@@ -1,0 +1,64 @@
+Nombre del proyecto:
+
+	CloudsManage
+
+
+Objetivos, descripción y funcionalidad del proyecto:
+	
+	- Vista Previa mostrando información básica como almacenamiento disponible/restante y la cuota.
+	- Mostrar en estructura de árbol los directorios y/o ficheros.	
+	- Opción para subir ficheros en ambas plataformas o a cada una por separado.
+	- Mover o copiar ficheros de una plataforma a otra.
+	
+
+URL del repositorio GitHub:
+
+	https://github.com/Velaa98/CloudsManage
+
+
+URL de la página web:
+
+	https://cloudsmanage.herokuapp.com/
+
+
+¿Cuántas API web vas a usar en el proyecto?:
+	
+	One Drive y Google Drive
+
+
+URL de la API(s) utilizada(s):
+	
+	https://docs.microsoft.com/es-es/onedrive/developer/rest-api/
+	https://developers.google.com/drive/v3/web/about-sdk
+
+
+Lenguaje(s) de marcas que utiliza(n) la(s) API:
+	
+	JSON
+
+
+¿Qué tipo de autentificación tiene(n) la(s) API utilizada(s)?:
+	
+	OAuth
+
+
+¿Qué métodos vas a usar en las llamada a la API?, es decir, ¿vas a consumir información del servicio web (métodos GET)?, o también, ¿vas a interactuar con el servicio web (métodos POST, PUT, DELETE,...)?:
+	
+	GET, POST, DELETE, PUT.
+
+
+¿Cuantas cosas hace la aplicación?, podemos pensar cuantos @route va a tener nuestro programa Flask:
+	
+	- Inicio de sesión
+	- Página principal con la vista previa y la información básica.
+	- Estructura de árbol.
+	- Subida de ficheros y las opciones de copiar o mover.
+
+
+¿Vas a hacer una página web válida y con hoja de estilo?
+	
+	Sí.
+
+Comenta cualquier cosa que crees que puedes hacerte conseguir un 10 en el proyecto:
+
+
