@@ -87,8 +87,8 @@ def login():
 #def get_microsoft_oauth_token():
 #	return session.get('microsoft_token')
 
-#@microsoft.tokengetter
-#def get_microsoft_oauth_token():
-#	return session.get('microsoft_token')
+@microsoft.tokengetter
+def get_microsoft_oauth_token():
+	return session.get('microsoft_token')
 
 app.run('0.0.0.0', int(port), debug=True)
