@@ -1,28 +1,26 @@
-#from flask import Flask, redirect, url_for, session, request, jsonify, render_template
-#from flask_oauthlib.client import OAuth, OAuthException
-#from logging import Logger
-#import uuid
-#import json
-
-from flask import Flask, render_template, url_for, request,session
-import requests
-import os
+from flask import Flask, redirect, url_for, session, request, jsonify, render_template
+from flask_oauthlib.client import OAuth, OAuthException
+from logging import Logger
+import uuid, json, requests, os
 
 app = Flask(__name__)
 
 app.secret_key = 'development'
-#oauth = OAuth(app)
-#microsoft = oauth.remote_app(
-#	'microsoft',
-#	consumer_key='d9694d49-12a5-4f88-a654-26c13ae05599',
-#	consumer_secret='tyxdmOQHNI48@@paIX639}{',
-#	request_token_params={'scope': ['files.readwrite.all','offline_access']},
-#	base_url='https://graph.microsoft.com/v1.0/',
-#	request_token_url=None,
-#	access_token_method='POST',
-#	access_token_url='https://login.microsoftonline.com/common/oauth2/v2.0/token',
-#	authorize_url='https://login.microsoftonline.com/common/oauth2/v2.0/authorize'
-#)
+
+port = os.environ['PORT']
+
+oauth = OAuth(app)
+microsoft = oauth.remote_app(
+	'microsoft',
+	consumer_key=os.environ['consumer_key'],
+	consumer_secret=os.environ['consumer_secret'],
+	request_token_params={'scope': ['files.readwrite.all','offline_access']},
+	base_url='https://graph.microsoft.com/v1.0/',
+	request_token_url=None,
+	access_token_method='POST',
+	access_token_url='https://login.microsoftonline.com/common/oauth2/v2.0/token',
+	authorize_url='https://login.microsoftonline.com/common/oauth2/v2.0/authorize'
+)
 
 ## Inicio
 @app.route('/')
@@ -73,5 +71,4 @@ def contact():
 #def get_microsoft_oauth_token():
 #	return session.get('microsoft_token')
 
-app.debug = True
-app.run('0.0.0.0')
+app.run('0.0.0.0', int(port), debug=True)
