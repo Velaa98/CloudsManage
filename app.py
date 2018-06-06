@@ -47,22 +47,38 @@ def upload():
 def contact():
 	return render_template("contact.html")
 
+@app.route('/login/callback')
+def callback():
+	response = microsoft.authorized_response()
+
+	if response is None:
+		return "Access Denied: Reason=%s\nError=%s" % (
+			response.get('error'), 
+			request.get('error_description')
+		)
+
+	if str(session['state']) != str(request.args['state']):
+		raise Exception('State has been messed with, end authentication')
+
+	session['microsoft_token'] = (response['access_token'], '')
+	return redirect(url_for('preview')) 
+
+
 ## Prueba de login
-@app.route('/login')
-def login():
-	return render_template("login.html")
+#@app.route('/login')
+#def login():
+#	return render_template("login.html")
 
 ## Inicio de sesión
-#@app.route('/login', methods=['GET', 'POST'])
-#def login():
-#	if 'microsoft_token' in session:
-#		## Cambiar el 'me'
-#		return redirect(url_for('preview'))
-#	
-#	guid = uuid.uuid4()
-#	session['state'] = guid
-#	return microsoft.authorize(callback=url_for('authorized', _external=True), state=guid)
-#
+@app.route('/login')
+def login():
+	if 'microsoft_token' in session:
+		return redirect(url_for('preview'))
+	
+	guid = uuid.uuid4()
+	session['state'] = guid
+	return microsoft.authorize(callback=url_for('callback', _external=True), state=guid)
+
 ### Desconexión
 #@app.route('/logout')
 #def logout():
