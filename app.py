@@ -49,7 +49,7 @@ def contact():
 	return render_template("contact.html")
 
 @app.route('/login/authorized')
-def callback():
+def authorized():
 	response = microsoft.authorized_response()
 
 #	if response is None:
@@ -72,7 +72,7 @@ def login():
 	
 	guid = uuid.uuid4()
 	session['state'] = guid
-	return microsoft.authorize(callback=url_for('callback', _external=True), state=guid)
+	return microsoft.authorize(callback=url_for('authorized', _external=True), state=guid)
 
 ### Desconexión
 #@app.route('/logout')
