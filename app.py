@@ -74,6 +74,5 @@ def contact():
 #def get_microsoft_oauth_token():
 #	return session.get('microsoft_token')
 
-if __name__ == '__main__':
-	app.debug = True
-	app.run('0.0.0.0')
+app.debug = True
+app.run('0.0.0.0')
