@@ -47,23 +47,23 @@ def contact():
 	return render_template("contact.html")
 
 ## Inicio de sesión
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-	if 'microsoft_token' in session:
-		## Cambiar el 'me'
-		return redirect(url_for('preview'))
-	
-	guid = uuid.uuid4()
-	session['state'] = guid
-	return microsoft.authorize(callback=url_for('authorized', _external=True), state=guid)
-
-## Desconexión
-@app.route('/logout')
-def logout():
-	session.pop('microsoft_token', None)
-	session.pop('state', None)
-	## Cambiar el 'index'
-	return redirect(url_for('index'))
+#@app.route('/login', methods=['GET', 'POST'])
+#def login():
+#	if 'microsoft_token' in session:
+#		## Cambiar el 'me'
+#		return redirect(url_for('preview'))
+#	
+#	guid = uuid.uuid4()
+#	session['state'] = guid
+#	return microsoft.authorize(callback=url_for('authorized', _external=True), state=guid)
+#
+### Desconexión
+#@app.route('/logout')
+#def logout():
+#	session.pop('microsoft_token', None)
+#	session.pop('state', None)
+#	## Cambiar el 'index'
+#	return redirect(url_for('index'))
 
 
 @microsoft.tokengetter
