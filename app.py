@@ -31,7 +31,7 @@ def index():
 @app.route('/preview')
 def preview():
 	preview = microsoft.get('drive/root')
-	return render_template("preview.html", preview=str(me.data))
+	return render_template("preview.html", preview=str(preview.data))
 
 ## Vista de árbol
 @app.route('/tree')
