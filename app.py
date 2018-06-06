@@ -58,8 +58,8 @@ def callback():
 #			request.get('error_description')
 #		)
 
-	if str(session['state']) != str(request.args['state']):
-		raise Exception('State has been messed with, end authentication')
+#	if str(session['state']) != str(request.args['state']):
+#		raise Exception('State has been messed with, end authentication')
 
 	session['microsoft_token'] = (response['access_token'], '')
 	return redirect(url_for('preview'))
