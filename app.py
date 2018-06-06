@@ -51,7 +51,7 @@ def contact():
 def login():
 	if 'microsoft_token' in session:
 		## Cambiar el 'me'
-		return redirect(url_for('me'))
+		return redirect(url_for('preview'))
 	
 	guid = uuid.uuid4()
 	session['state'] = guid

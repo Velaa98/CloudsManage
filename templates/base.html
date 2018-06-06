@@ -12,8 +12,10 @@
 	<body>
 		{% include 'menu.html' %}
 		{%block content%}{%endblock%}
-		<footer class="container">
-			<p>Sugerencias mediante el formulario de <a href="contact.html">Contacto</a></p>
-		</footer>
+		<div id="copyright">
+			<p>Sugerencias mediante el formulario de <a href="{{ url_for('contact') }}">Contacto</a></p>
+		</div>
 	</body>
 </html>
+
+
