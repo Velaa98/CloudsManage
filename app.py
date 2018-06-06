@@ -47,6 +47,11 @@ def upload():
 def contact():
 	return render_template("contact.html")
 
+## Prueba de login
+@app.route('/login')
+def login():
+	return render_template("login.html")
+
 ## Inicio de sesión
 #@app.route('/login', methods=['GET', 'POST'])
 #def login():
