@@ -70,9 +70,9 @@ def contact():
 #	return redirect(url_for('index'))
 
 
-@microsoft.tokengetter
-def get_microsoft_oauth_token():
-	return session.get('microsoft_token')
+#@microsoft.tokengetter
+#def get_microsoft_oauth_token():
+#	return session.get('microsoft_token')
 
 if __name__ == '__main__':
 	app.debug = True
