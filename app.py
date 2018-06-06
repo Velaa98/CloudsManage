@@ -62,13 +62,7 @@ def callback():
 		raise Exception('State has been messed with, end authentication')
 
 	session['microsoft_token'] = (response['access_token'], '')
-	return redirect(url_for('preview')) 
-
-
-## Prueba de login
-#@app.route('/login')
-#def login():
-#	return render_template("login.html")
+	return redirect(url_for('preview'))
 
 ## Inicio de sesión
 @app.route('/login')
