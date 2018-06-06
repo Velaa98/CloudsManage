@@ -48,7 +48,7 @@ def upload():
 def contact():
 	return render_template("contact.html")
 
-@app.route('/login/callback')
+@app.route('/login/authorized')
 def callback():
 	response = microsoft.authorized_response()
 
