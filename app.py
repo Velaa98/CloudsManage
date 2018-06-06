@@ -52,11 +52,11 @@ def contact():
 def callback():
 	response = microsoft.authorized_response()
 
-	if response is None:
-		return "Access Denied: Reason=%s\nError=%s" % (
-			response.get('error'), 
-			request.get('error_description')
-		)
+#	if response is None:
+#		return "Access Denied: Reason=%s\nError=%s" % (
+#			response.get('error'), 
+#			request.get('error_description')
+#		)
 
 	if str(session['state']) != str(request.args['state']):
 		raise Exception('State has been messed with, end authentication')
