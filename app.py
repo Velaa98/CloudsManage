@@ -21,17 +21,32 @@ microsoft = oauth.remote_app(
 )
 
 
-
 ## Inicio
-
 @app.route('/')
-def inicio():
+def index():
 	return render_template("index.html")
 
+## Vista Previa
+@app.route('/preview')
+def preview():
+	return render_template("preview.html")
 
+## Vista de árbol
+@app.route('/tree')
+def tree():
+	return render_template("tree.html")
+
+## Subida simultanea
+@app.route('/upload')
+def upload():
+	return render_template("upload.html")
+
+## Contacto
+@app.route('/contact')
+def contact():
+	return render_template("contact.html")
 
 ## Inicio de sesión
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	if 'microsoft_token' in session:
@@ -40,13 +55,9 @@ def login():
 	
 	guid = uuid.uuid4()
 	session['state'] = guid
-
 	return microsoft.authorize(callback=url_for('authorized', _external=True), state=guid)
 
-
-
 ## Desconexión
-
 @app.route('/logout')
 def logout():
 	session.pop('microsoft_token', None)
