@@ -23,7 +23,9 @@ app.secret_key = 'development'
 #	access_token_url='https://login.microsoftonline.com/common/oauth2/v2.0/token',
 #	authorize_url='https://login.microsoftonline.com/common/oauth2/v2.0/authorize'
 #)
-
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
 
 ## Inicio
 @app.route('/')
