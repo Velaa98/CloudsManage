@@ -61,7 +61,7 @@ def callback():
 #	if str(session['state']) != str(request.args['state']):
 #		raise Exception('State has been messed with, end authentication')
 
-	session['microsoft_token'] = (response['access_token'], '')
+#	session['microsoft_token'] = (response['access_token'], '')
 	return redirect(url_for('preview'))
 
 ## Inicio de sesión
@@ -87,8 +87,8 @@ def login():
 #def get_microsoft_oauth_token():
 #	return session.get('microsoft_token')
 
-@microsoft.tokengetter
-def get_microsoft_oauth_token():
-	return session.get('microsoft_token')
+#@microsoft.tokengetter
+#def get_microsoft_oauth_token():
+#	return session.get('microsoft_token')
 
 app.run('0.0.0.0', int(port), debug=True)
