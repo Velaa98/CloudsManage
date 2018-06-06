@@ -12,7 +12,7 @@ microsoft = oauth.remote_app(
 	'microsoft',
 	consumer_key='d9694d49-12a5-4f88-a654-26c13ae05599',
 	consumer_secret='tyxdmOQHNI48@@paIX639}{',
-	request_token_params={'scope': 'offline_access User.Read'},
+	request_token_params={'scope': ['files.readwrite.all','offline_access']},
 	base_url='https://graph.microsoft.com/v1.0/',
 	request_token_url=None,
 	access_token_method='POST',
