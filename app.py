@@ -72,7 +72,7 @@ def login():
 	
 	guid = uuid.uuid4()
 	session['state'] = guid
-	return microsoft.authorize(callback=url_for('authorized', _external=True), state=guid)
+	return microsoft.authorize(callback='http://cloudsmanage.herokuapp.com/login/authorized', state=guid)
 
 ### Desconexión
 #@app.route('/logout')
