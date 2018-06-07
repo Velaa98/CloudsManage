@@ -80,12 +80,11 @@ def login():
 	return microsoft.authorize(callback='https://cloudsmanage.herokuapp.com/login/authorized', state=guid)
 
 ### Desconexión
-#@app.route('/logout')
-#def logout():
-#	session.pop('microsoft_token', None)
-#	session.pop('state', None)
-#	## Cambiar el 'index'
-#	return redirect(url_for('index'))
+@app.route('/logout')
+def logout():
+	session.pop('microsoft_token', None)
+	session.pop('state', None)
+	return redirect(url_for('index'))
 
 
 #@microsoft.tokengetter
