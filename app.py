@@ -52,14 +52,14 @@ def contact():
 def authorized():
 	response = microsoft.authorized_response()
 
-#	if response is None:
-#		return "Access Denied: Reason=%s\nError=%s" % (
-#			response.get('error'), 
-#			request.get('error_description')
-#		)
+	if response is None:
+		return "Access Denied: Reason=%s\nError=%s" % (
+			response.get('error'), 
+			request.get('error_description')
+		)
 
-#	if str(session['state']) != str(request.args['state']):
-#		raise Exception('State has been messed with, end authentication')
+	if str(session['state']) != str(request.args['state']):
+		raise Exception('State has been messed with, end authentication')
 
 	session['microsoft_token'] = (response['access_token'], '')
 	print(session)
@@ -68,7 +68,7 @@ def authorized():
 	return redirect(url_for('preview'))
 
 ## Inicio de sesión
-@app.route('/login')
+@app.route('/login', methods = ['POST', 'GET'])
 def login():
 	if 'microsoft_token' in session:
 		return redirect(url_for('preview'))
