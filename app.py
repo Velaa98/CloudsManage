@@ -61,7 +61,10 @@ def authorized():
 #	if str(session['state']) != str(request.args['state']):
 #		raise Exception('State has been messed with, end authentication')
 
-	session['microsoft_token'] = response['access_token']
+	session['microsoft_token'] = (response['access_token'], '')
+	print(session)
+	print("session microsoft_token")
+	print(session['microsoft_token'])
 	return redirect(url_for('preview'))
 
 ## Inicio de sesión
