@@ -36,7 +36,8 @@ def preview():
 ## Vista de árbol
 @app.route('/tree')
 def tree():
-	return render_template("tree.html")
+	tree = microsoft.get('drive/root/children')
+	return render_template("tree.html", tree=str(tree.data))
 
 ## Subida simultanea
 @app.route('/upload')
