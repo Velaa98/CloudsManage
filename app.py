@@ -25,7 +25,11 @@ microsoft = oauth.remote_app(
 ## Inicio
 @app.route('/')
 def index():
-	return render_template("index.html",login=session['state'])
+	if session['state']:
+		login=True
+	else:
+		login=False
+	return render_template("index.html",login=login)
 
 ## Vista Previa
 @app.route('/preview')
