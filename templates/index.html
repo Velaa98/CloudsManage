@@ -3,7 +3,7 @@
 
 
 {% block menu %}
-{% if login %}
+{% if login==True %}
 	<div id="menu">
 		<ul>
 			<li class="active"><a href="{{ url_for('index') }}" accesskey="1" title="">Inicio</a></li>

@@ -25,7 +25,7 @@ microsoft = oauth.remote_app(
 ## Inicio
 @app.route('/')
 def index():
-	if session['state']:
+	if "state" in session:
 		login=True
 	else:
 		login=False
