@@ -25,7 +25,7 @@ microsoft = oauth.remote_app(
 ## Inicio
 @app.route('/')
 def index():
-	return render_template("index.html")
+	return render_template("index.html",session['state'])
 
 ## Vista Previa
 @app.route('/preview')
@@ -63,9 +63,6 @@ def authorized():
 		raise Exception('State has been messed with, end authentication')
 
 	session['microsoft_token'] = (response['access_token'], '')
-	print(session)
-	print("session microsoft_token")
-	print(session['microsoft_token'])
 	return redirect(url_for('preview'))
 
 ## Inicio de sesión
