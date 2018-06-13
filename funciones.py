@@ -35,3 +35,21 @@ def FormarArbol(dic):
 				else:
 					tree[0]["files"].append(dict(name=elem["name"]))
 	return tree
+
+def AjustarUnidad(v_bytes):
+	if v_bytes >= 1024**4:
+		unidad=" TB"
+		v_bytes=str(round(v_bytes/1024**4,2))+unidad
+	elif v_bytes >= 1024**3:
+		unidad=" GB"
+		v_bytes=str(round(v_bytes/1024**3,2))+unidad
+	elif v_bytes >= 1024**2:
+		unidad=" MB"
+		v_bytes=str(round(v_bytes/1024**2,2))+unidad
+	elif v_bytes >= 1024:
+		unidad=" KB"
+		v_bytes=str(round(v_bytes/1024,2))+unidad
+	else:
+		unidad=" bytes"
+		v_bytes=v_bytes+unidad
+	return v_bytes

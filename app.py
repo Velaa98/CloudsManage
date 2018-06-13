@@ -34,8 +34,14 @@ def index():
 ## Vista Previa
 @app.route('/preview')
 def preview():
-	variable = microsoft.get('me/drive')
-	return render_template('preview.html', variable=str(variable.data))
+	dic = microsoft.get('me/drive').data
+
+	user=dic["owner"]["user"]["displayName"]
+	total=funciones.AjustarUnidad(dic["quota"]["total"])
+	usado=funciones.AjustarUnidad(dic["quota"]["used"])
+	libre=funciones.AjustarUnidad(dic["quota"]["remaining"])
+
+	return render_template('preview.html', user=user,total=total,usado=usado,libre=libre)
 
 ## Vista de árbol
 @app.route('/tree')
