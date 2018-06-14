@@ -27,7 +27,7 @@
 {% block content %}
 {% if login==False %}
 	<div class="wrapper">
-		<div id="banner" class="container"><img src="static/img/banner.jpg" width="1200" height="500" alt="" /></div>
+		<div id="banner" class="container"><img src="static/img/banner0.png" width="1200" height="250" alt="" /></div>
 		<div id="welcome" class="container">
 			<div class="title">
 				<h2>CloudsManage</h2>
@@ -37,7 +37,7 @@
 	</div>
 {% else -%}
 	<div class="wrapper">
-		<div id="banner" class="container"><img src="static/img/banner.jpg" width="1200" height="500" alt="" /></div>
+		<div id="banner" class="container"><img src="static/img/banner0.png" width="1200" height="250" alt="" /></div>
 		<div id="welcome" class="container">
 			<div class="title">
 				<h2>CloudsManage</h2>
@@ -48,7 +48,7 @@
 				<li> <p> <a href="{{ url_for('preview') }}" accesskey="2" title="">Vista Previa</a>, encontraremos una vista rápida con la información importante sobre nuestra cuota.</p> </li>
 				<li> <p> <a href="{{ url_for('tree') }}" accesskey="3" title="">Vista de árbol</a>, donde podremos visualizar todos los elementos de nuestro onedrive de forma estructurada.</p> </li>
 				<li> <p> <a href="{{ url_for('upload') }}" accesskey="4" title="">Subida simultanea</a>, actualmente no disponible.</p> </li>
-				<li> <p> <a href="{{ url_for('contact') }}" accesskey="5" title="">Contacto</a> </p>, formulario de contacto.</p> </li>
+				<li> <p> <a href="{{ url_for('contact') }}" accesskey="5" title="">Contacto</a>, formulario de contacto.</p> </li>
 				<li> <p> Iniciar Sesión/Cerrar Sesión.</p> </li>
 			</ul>
 		</div>
