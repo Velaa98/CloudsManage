@@ -416,6 +416,14 @@
 /* Wrapper                                                                       */
 /*********************************************************************************/
 
+	.preview
+	{
+		overflow: hidden;
+		padding: 0em 0em 5em 15em;
+		background: #FFF;
+		text-align: left;
+	}
+
 
 	.wrapper
 	{
