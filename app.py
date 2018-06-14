@@ -47,7 +47,16 @@ def preview():
 @app.route('/tree')
 def tree():
 	dic = microsoft.get('drive/root/children').data
-	return render_template("tree.html", tree=str(funciones.FormarArbol(dic)))
+	tree=[]
+	subcarpetas=[]
+
+	tree,subcarpetas=funciones.FormarArbol(dic,tree,subcarpetas)
+	for nivel in subcarpetas:
+		for elem in nivel:
+			dic=microsoft.get('me/drive/items/%s/children'%(elem)).data
+			tree,subcarpetas=funciones.FormarArbol(dic,tree,subcarpetas)
+			
+	return render_template('tree.html', tree=tree)
 	
 ## Subida simultanea
 @app.route('/upload')

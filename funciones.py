@@ -1,40 +1,52 @@
-def FormarArbol(dic):
-	tree = []
+def FormarArbol(dic,tree,subcarpetas):
+	lvl=ObtenerNivel(dic["value"][0]["parentReference"]["path"])
+	# Recorre los elementos del diccionario
 	for elem in dic["value"]:
-		# Si el path es root entra en el elemento 0 de tree.
-		if elem["parentReference"]["path"] == "/drive/root:":
-			# Si La lista tree aún no tiene elementos crea el primero. 
-			if len(tree) == 0:
-				tree.append({})
-			
-			# Si hay una carpeta en el nivel,
-			if "folder" in elem:
-				# Y aún no existe el diccionario folders, lo crea y añade a la lista uno nuevo con el nombre de la carpeta.
-				if "folders" not in tree[0]:
-					tree[0]["folders"]=[]
-					tree[0]["folders"].append(dict(name=elem["name"]))
-				# si existe añade a la lista de folders un nuevo diccionario con el nombre de la carpeta.
-				else:
-					tree[0]["folders"].append(dict(name=elem["name"]))
-				# si la carpeta tiene carpetas dentro:
-				if elem["folder"]["childCount"] > 0:
-					# Se recorren las carpetas que hay en el nivel 0
-					for i in tree[0]["folders"]:
-						# Cuando la carpeta sea la que estamos tratando,
-						if i["name"] == elem["name"]:
-							# Añade un nuevo valor al diccionario con formato: "NumCarpetas"= X
-							i["childCount"]=elem["folder"]["childCount"]
+		# Si tree no tiene elementos añade un diccionario para el nivel 0. 
+		if len(tree) == 0:
+			tree.append({})
+		# Si los elementos de tree -1 no corresponden con el nivel actual, añade un diccionario.
+		elif len(tree)-1 != lvl:
+			tree.append({})
+		# Si subcarpetas no tiene elementos añade un diccionario para el nivel 0. 
+		if len(subcarpetas) == 0:
+			subcarpetas.append([])
+		# Si los elementos de subcarpetas -1 no corresponden con el nivel actual, añade un diccionario.
+		elif len(subcarpetas)-1 != lvl:
+			subcarpetas.append([])
 
-			# Si hay un fichero en el nivel,
-			if "file" in elem:
-				# Y aún no existe el diccionario files, lo crea y añade a la lista uno nuevo con el nombre del fichero.
-				if "files" not in tree[0]:
-					tree[0]["files"]=[]
-					tree[0]["files"].append(dict(name=elem["name"]))	
-				# si existe añade a la lista de files un nuevo diccionario con el nombre del fichero.
-				else:
-					tree[0]["files"].append(dict(name=elem["name"]))
-	return tree
+		# Si hay una carpeta en el nivel,
+		if "folder" in elem:
+			# Y aún no existe el diccionario folders, lo crea y añade a la lista el elemento actual.
+			if "folders" not in tree[lvl]:
+				tree[lvl]["folders"]=[]
+				tree[lvl]["folders"].append(dict(name=elem["name"],parent=elem["parentReference"]["path"],id=elem["id"],web=elem["webUrl"]))
+			# si existe añade a la lista de folders un nuevo diccionario con el nombre de la carpeta.
+			else:
+				tree[lvl]["folders"].append(dict(name=elem["name"],parent=elem["parentReference"]["path"],id=elem["id"],web=elem["webUrl"]))			# si la carpeta tiene carpetas dentro:
+			if elem["folder"]["childCount"] > 0:
+				# Añade un nuevo valor al diccionario del elemento actual con formato/valor: "NumCarpetas"= X
+				tree[lvl]["folders"][-1]["NumCarpetas"]=elem["folder"]["childCount"]
+				subcarpetas[lvl].append(elem["id"])
+		
+		# Si hay un fichero en el nivel,
+		if "file" in elem:
+			# Y aún no existe el diccionario files, lo crea y añade a la lista el elemento actual.
+			if "files" not in tree[lvl]:
+				tree[lvl]["files"]=[]
+				tree[lvl]["files"].append(dict(name=elem["name"],parent=elem["parentReference"]["path"],id=elem["id"],download=elem["@microsoft.graph.downloadUrl"],type=elem["file"]["mimeType"]))
+			# si existe añade a la lista de files un nuevo diccionario con el nombre del fichero.
+			else:
+				tree[lvl]["files"].append(dict(name=elem["name"],parent=elem["parentReference"]["path"],id=elem["id"],download=elem["@microsoft.graph.downloadUrl"],type=elem["file"]["mimeType"]))
+	return tree,subcarpetas
+
+def ObtenerNivel(path):
+	# Devuelve el nivel en el que está el elemento.
+	# Si el path del padre es root devueve nivel 0.
+	if len(path.split("/drive/root:/")) == 1:
+		return 0
+	else:
+		return len(path.split("/drive/root:/")[1].split("/"))
 
 def AjustarUnidad(v_bytes):
 	if v_bytes >= 1024**4:
