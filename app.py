@@ -55,7 +55,7 @@ def tree():
 		for elem in nivel:
 			dic=microsoft.get('me/drive/items/%s/children'%(elem)).data
 			tree,subcarpetas=funciones.FormarArbol(dic,tree,subcarpetas)
-			
+
 	return render_template('tree.html', tree=tree)
 	
 ## Subida simultanea
@@ -82,7 +82,7 @@ def authorized():
 		raise Exception('State has been messed with, end authentication')
 
 	session['microsoft_token'] = (response['access_token'], '')
-	return redirect(url_for('preview'))
+	return redirect(url_for('index'))
 
 ## Inicio de sesión
 @app.route('/login', methods = ['POST', 'GET'])

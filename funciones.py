@@ -25,8 +25,8 @@ def FormarArbol(dic,tree,subcarpetas):
 			else:
 				tree[lvl]["folders"].append(dict(name=elem["name"],parent=elem["parentReference"]["path"],id=elem["id"],web=elem["webUrl"]))			# si la carpeta tiene carpetas dentro:
 			if elem["folder"]["childCount"] > 0:
-				# Añade un nuevo valor al diccionario del elemento actual con formato/valor: "NumCarpetas"= X
-				tree[lvl]["folders"][-1]["NumCarpetas"]=elem["folder"]["childCount"]
+				# Añade un nuevo valor al diccionario del elemento actual con formato/valor: "Children"= X que dirá cuantos elemntos hay dentro
+				tree[lvl]["folders"][-1]["children"]=elem["folder"]["childCount"]
 				subcarpetas[lvl].append(elem["id"])
 		
 		# Si hay un fichero en el nivel,
