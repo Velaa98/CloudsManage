@@ -419,7 +419,7 @@
 	.preview
 	{
 		overflow: hidden;
-		padding: 0em 0em 5em 15em;
+		padding-left: 10em;
 		background: #FFF;
 		text-align: left;
 	}
