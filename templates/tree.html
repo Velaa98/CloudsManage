@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block content %}
-	<div id="tree">
+	<div class="tree">
 		{% for elem in tree["value"] %}
 			{% if "file" in elem %}
 				<p> <a href="{{ elem['@microsoft.graph.downloadUrl'] }}">{{ elem["name"] }}</a> </p>

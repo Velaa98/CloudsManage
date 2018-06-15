@@ -416,24 +416,14 @@
 /* Wrapper                                                                       */
 /*********************************************************************************/
 	
-	#tree
+	.tree
 	{
 		overflow: hidden;
 		padding: 2em 0em 2em 5em;
 		background: #FFF;
 		text-align: left;
 	}
-
-	#tree ul
-	{
-		list-style: none;
-	}
-
-	#tree li.carpeta
-	{
-		list-style-type: circle;
-	}
-
+	
 	.preview
 	{
 		overflow: hidden;
