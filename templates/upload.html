@@ -15,15 +15,14 @@
 
 {% block content %}
 {% if uploaded==False %}
-	<form action = "/upload" enctype=multipart/form-data method = "POST">
-		<input type="file" name="file"/>
-		<input type="submit" name="upload" value="Subir"/>
-	</form>
-
+	<div class="preview">
+		<p>Funcionalidad no disponible.</p>
+	</div>
 {% else -%}
-<div class="preview">
-	<p>Funcionalidad no disponible.</p>
-</div>
+	{# <form action = "/upload" enctype=multipart/form-data method = "POST"> #}
+		{# <input type="file" name="file"/> #}
+		{# <input type="submit" name="upload" value="Subir"/> #}
+	{# </form> #}
 {% endif %}
 
 {% endblock %}
