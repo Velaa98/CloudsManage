@@ -17,13 +17,13 @@
 	<div class="preview">
 		{% for elem in tree["value"] %}
 			{% if "file" in elem %}
-				<p> <a href="{{ elem['@microsoft.graph.downloadUrl'] }}">{{ elem["name"] }}/</a> </p>
+				<p> <a href="{{ elem['@microsoft.graph.downloadUrl'] }}">{{ elem["name"] }}</a> </p>
 			{% endif %}
 		{% endfor %}
 		{% for elem in tree["value"] %}
 			{% if "folder" in elem %}
 				{% if elem["folder"]["childCount"] == 0 %}
-					<p>{{ elem["name"] }}</p>
+					<p>{{ elem["name"] }}/</p>
 				{% endif %}
 			{% endif %}
 		{% endfor %}
