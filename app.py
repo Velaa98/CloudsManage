@@ -67,6 +67,7 @@ def tree(idcarpeta):
 ## Subida de Fichero
 @app.route('/upload', methods = ['POST', 'GET'])
 def upload():
+	return render_template("upload.html",uploaded=False)
 	if request.method == "POST":
 		redirect_uri = 'https://cloudsmanage.herokuapp.com/upload'
 		client_secret = os.environ['consumer_secret']
