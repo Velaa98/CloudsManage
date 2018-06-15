@@ -76,8 +76,9 @@ def upload():
 		code = GetAuthCodeServer.get_auth_code(auth_url, redirect_uri)
 		client.auth_provider.authenticate(code, redirect_uri, client_secret)
 		file = request.files['file']
-		file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
-		returned_item = client.item(drive='me', id='root').children[file.filename].upload('./upload/%s'%(file.filename))
+		filename = secure_filename(file.filename)
+		file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+		returned_item = client.item(drive='me', id='root').children[filename].upload('./upload/%s'%(file.filename))
 		
 		return render_template("upload.html",uploaded=True)
 	else:
