@@ -1,18 +1,19 @@
 
 #### **Inicio**:
-Habrá una breve descripción de la aplicación y un enlace para iniciar sesión en caso de que no lo estemos ya.
+Nada más entrar solo encontraremos la página de inicio y la opción de iniciar sesión para empezar a usar la aplicación. 
+Si ya hemos niciado sesión tendremos una breve descripción de cada apartado del menú y la opción de cerrar sesión. 
 
 
-#### **Inicio de sesión**: 
+#### **Iniciar Sesión**: 
+Nos llevará hasta la página Microsoft para poder iniciar sesión, si es la primera vez que usamos la aplicación nos pedirá una serie de permisos necesarios para su funcionamiento.
 
 
-
-#### **Desconexión**: 
-
+#### **Cerrar Sesión**: 
+Si hemos iniciado sesión y queremos desconectarnos tendremos una opción para ello en el menú superior, éste nos redirecciona a la página de inicio y cierra la sesión.
 
 
 #### **Vista previa**:
-Vista previa mostrando información básica como almacenamiento disponible/restante y la cuota.
+Se mostrará información de su cuota de almacenamiento y disponible.
 
 
 #### **Vista de árbol**: 
