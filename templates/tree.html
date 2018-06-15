@@ -17,7 +17,7 @@
 	<div class="preview">
 		{% for elem in tree["value"] %}
 			{% if "file" in elem %}
-				<p> <a href="{{ elem['@microsoft.graph.downloadUrl'] }}">{{ elem["name"] }}</a> </p>
+				<p> <a href="{{ elem['@microsoft.graph.downloadUrl'] }}">{{ elem["name"] }}/</a> </p>
 			{% endif %}
 		{% endfor %}
 		{% for elem in tree["value"] %}
@@ -30,7 +30,7 @@
 		{% for elem in tree["value"] %}
 			{% if "folder" in elem %}
 				{% if elem["folder"]["childCount"] > 0 %}
-					<p> <a href="{{ url_for('tree',idcarpeta=elem['id']) }}">{{ elem["name"] }} </a> </p>
+					<p> <a href="{{ url_for('tree',idcarpeta=elem['id']) }}">{{ elem["name"] }}/</a> </p>
 				{% endif %}
 			{% endif %}
 		{% endfor %}
