@@ -1,13 +1,15 @@
 from flask import Flask, redirect, url_for, session, request, jsonify, render_template
 from flask_oauthlib.client import OAuth, OAuthException
 from logging import Logger
-import uuid, json, requests, os, funciones
+import uuid, json, requests, os, funciones, onedrivesdk
+from onedrivesdk.helpers import GetAuthCodeServer
 
 app = Flask(__name__)
 
 app.secret_key = 'development'
-
 port = os.environ['PORT']
+UPLOAD_FOLDER = './upload'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 oauth = OAuth(app)
 microsoft = oauth.remote_app(
@@ -62,10 +64,24 @@ def tree(idcarpeta):
 
 	return render_template('tree.html', tree=tree)
 	
-## Subida simultanea
-@app.route('/upload')
+## Subida de Fichero
+@app.route('/upload', methods = ['POST', 'GET'])
 def upload():
-	return render_template("upload.html")
+	if request.method == "POST":
+		redirect_uri = 'https://cloudsmanage.herokuapp.com/upload'
+		client_secret = os.environ['consumer_secret']
+		scopes=['wl.signin', 'wl.offline_access', 'onedrive.readwrite']
+		client = onedrivesdk.get_default_client(client_id=os.environ['consumer_key'], scopes=scopes)
+		auth_url = client.auth_provider.get_auth_url(redirect_uri)
+		code = GetAuthCodeServer.get_auth_code(auth_url, redirect_uri)
+		client.auth_provider.authenticate(code, redirect_uri, client_secret)
+		file = request.files['file']
+		file.save(os.path.join(app.config['UPLOAD_FOLDER'], file.filename))
+		returned_item = client.item(drive='me', id='root').children[file.filename].upload('./upload/%s'%(file.filename))
+		
+		return render_template("upload.html",uploaded=True)
+	else:
+		return render_template("upload.html",uploaded=False)
 
 ## Contacto
 @app.route('/contact')
