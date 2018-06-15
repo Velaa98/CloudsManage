@@ -26,14 +26,10 @@ microsoft = oauth.remote_app(
 @app.route('/')
 def index():
 	if "state" in session:
-		tree = microsoft.get('drive/root/children').data
-		if tree["value"][0]["parentReference"]["path"] == "/drive/root:":
-			idcarpeta = "root"
-		else:
-			idcarpeta = tree["value"][0]["parentReference"]["id"]
-		return render_template("index.html",login=True, idcarpeta=idcarpeta)
+		login=True
 	else:
-		return render_template("index.html",login=False)
+		login=False
+	return render_template("index.html",login=login)
 
 ## Vista Previa
 @app.route('/preview')
