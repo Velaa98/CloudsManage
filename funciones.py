@@ -38,6 +38,7 @@ def FormarArbol(dic,tree,subcarpetas):
 			# si existe añade a la lista de files un nuevo diccionario con el nombre del fichero.
 			else:
 				tree[lvl]["files"].append(dict(name=elem["name"],parent=elem["parentReference"]["path"],id=elem["id"],download=elem["@microsoft.graph.downloadUrl"],type=elem["file"]["mimeType"]))
+	tree[lvl]["lvl"]=lvl
 	return tree,subcarpetas
 
 def ObtenerNivel(path):

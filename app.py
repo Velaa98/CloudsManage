@@ -26,10 +26,14 @@ microsoft = oauth.remote_app(
 @app.route('/')
 def index():
 	if "state" in session:
-		login=True
+		tree = microsoft.get('drive/root/children').data
+		if tree["value"][0]["parentReference"]["path"] == "/drive/root:":
+			idcarpeta = "root"
+		else:
+			idcarpeta = tree["value"][0]["parentReference"]["id"]
+		return render_template("index.html",login=True, idcarpeta=idcarpeta)
 	else:
-		login=False
-	return render_template("index.html",login=login)
+		return render_template("index.html",login=False)
 
 ## Vista Previa
 @app.route('/preview')
@@ -44,17 +48,21 @@ def preview():
 	return render_template('preview.html', user=user,total=total,usado=usado,libre=libre)
 
 ## Vista de árbol
-@app.route('/tree')
-def tree():
-	dic = microsoft.get('drive/root/children').data
-	tree=[]
-	subcarpetas=[]
+@app.route('/tree/<idcarpeta>')
+def tree(idcarpeta):
+	if idcarpeta == "root":
+		tree = microsoft.get('drive/root/children').data
+	else:
+		tree=microsoft.get('me/drive/items/%s/children'%(idcarpeta)).data
 
-	tree,subcarpetas=funciones.FormarArbol(dic,tree,subcarpetas)
-	for nivel in subcarpetas:
-		for elem in nivel:
-			dic=microsoft.get('me/drive/items/%s/children'%(elem)).data
-			tree,subcarpetas=funciones.FormarArbol(dic,tree,subcarpetas)
+#	tree=[]
+#	subcarpetas=[]
+
+#	tree,subcarpetas=funciones.FormarArbol(dic,tree,subcarpetas)
+#	for nivel in subcarpetas:
+#		for elem in nivel:
+#			dic=microsoft.get('me/drive/items/%s/children'%(elem)).data
+#			tree,subcarpetas=funciones.FormarArbol(dic,tree,subcarpetas)
 
 	return render_template('tree.html', tree=tree)
 	

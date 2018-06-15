@@ -14,5 +14,27 @@
 {% endblock %}
 
 {% block content %}
-	<p>{{ tree }}</p>
+	<ul>
+	{% for elem in tree["value"] %}
+		{% if "file" in elem %}
+			<li> <a href="{{ elem['@microsoft.graph.downloadUrl'] }}">{{ elem["name"] }}</a> </li>
+		{% endif %}
+	{% endfor %}
+
+	{% for elem in tree["value"] %}
+		{% if "folder" in elem %}
+			{% if elem["folder"]["childCount"] == 0 %}
+				<li>{{ elem["name"] }}</li>
+			{% endif %}
+		{% endif %}
+	{% endfor %}
+
+	{% for elem in tree["value"] %}
+		{% if "folder" in elem %}
+			{% if elem["folder"]["childCount"] > 0 %}
+				<li type="circle"> <a href="{{ url_for('me',idcarpeta=elem['id']) }}">{{ elem["name"] }} </a> </li>
+			{% endif %}
+		{% endif %}
+	{% endfor %}
+	</ul>
 {% endblock %}
