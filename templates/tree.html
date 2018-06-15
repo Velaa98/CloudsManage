@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block content %}
-	<div class="preview">
+	<div class="tree">
 		<ul>
 		{% for elem in tree["value"] %}
 			{% if "file" in elem %}
@@ -31,7 +31,7 @@
 		{% for elem in tree["value"] %}
 			{% if "folder" in elem %}
 				{% if elem["folder"]["childCount"] > 0 %}
-					<li type="circle"> <a href="{{ url_for('tree',idcarpeta=elem['id']) }}">{{ elem["name"] }} </a> </li>
+					<li class="carpeta"> <a href="{{ url_for('tree',idcarpeta=elem['id']) }}">{{ elem["name"] }} </a> </li>
 				{% endif %}
 			{% endif %}
 		{% endfor %}
