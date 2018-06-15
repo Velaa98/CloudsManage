@@ -15,7 +15,7 @@
 
 {% block content %}
 	<div class="tree">
-		<ul>
+		<ul class="lista">
 		{% for elem in tree["value"] %}
 			{% if "file" in elem %}
 				<li> <a href="{{ elem['@microsoft.graph.downloadUrl'] }}">{{ elem["name"] }}</a> </li>
