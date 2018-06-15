@@ -1,33 +1,33 @@
-#Contenido del repositorio
+# Contenido del repositorio
 
-####**app.py**:
+#### **app.py**:
 Es el programa principal, la aplicación que se ejecuta.
 
 
-####**funciones.py**:
+#### **funciones.py**:
 Funciones creadas para optimizar el código de *app.py*.
 
 
-####**requirements.txt**:
+#### **requirements.txt**:
 Módulos necesarios para el funcionamiento de la aplicación, al tener este nombre [heroku](https://www.heroku.com/) los recoge e instala automáticamente al desplegar la aplicación. 
 
 
-####**Procfile**:
+#### **Procfile**:
 Fichero específico de  [heroku](https://www.heroku.com/) donde podemos indicar algunas opciones y comandos que se van a ejecutar.
 
 
-####**templates/**:
+#### **templates/**:
 Carpeta donde encontramos las diferentes plantilla dinámicas usadas en la aplicación que posteriormente crearan las páginas mediante el motor de plantillas [jinja](http://jinja.pocoo.org/)
 
 
-####**static/**:
+#### **static/**:
 Aquí encontraremos dos subcarpetas: img y css, las cuales contienen las imágenes y los ficheros css de la aplicación respectivamente.
 
 
-####**upload/**:
+#### **upload/**:
 Su uso no está implementado.
 
-#Aplicación
+# Aplicación
 
 #### **Inicio**:
 Nada más entrar solo encontraremos la página de inicio y la opción de iniciar sesión. Necesario para usar la aplicación. 
@@ -57,4 +57,4 @@ Posibilidad de subir de forma simultanea en ambas plataforma el fichero elegido 
 #### **Contacto**: 
 Formulario de contacto para sugerencias y comentarios. Actualmente no disponible.
 
-#URL de la aplicación: [CloudManage](https://cloudsmanage.herokuapp.com/)
+# URL de la aplicación: [CloudManage](https://cloudsmanage.herokuapp.com/)
