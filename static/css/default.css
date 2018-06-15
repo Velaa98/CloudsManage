@@ -426,7 +426,7 @@
 	.tree
 	{
 		overflow: hidden;
-		padding-left: 10em;
+		padding: 2em 0em 2em 5em;
 		background: #FFF;
 		text-align: left;
 	}
